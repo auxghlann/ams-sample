@@ -61,7 +61,7 @@ namespace ams_sample
         public void get_all_attendances(OleDbConnection conn, DataTable dt, DataGridView grdData)
         {
 
-            string query = "select * from attendances";
+            string query = "select id_num as ID_Number, time_status as Time_Status, time_attend as Time_Attended from attendances";
 
             if (conn.State != ConnectionState.Open)
             {
@@ -83,6 +83,14 @@ namespace ams_sample
 
         public void add_attendance(int id_number, string time_status, OleDbConnection conn)
         {
+            // Guard clause
+            if (!is_id_num_exist(id_number, conn))
+            {
+                MessageBox.Show($"Student Number {id_number} does not exist!", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
+            // Main code
             string query = "INSERT INTO attendances (id_num, time_status, time_attend) VALUES (?, ?, ?)";
 
             if (conn.State != ConnectionState.Open)
@@ -129,6 +137,32 @@ namespace ams_sample
         {
 
         }
+
+        // Helper function
+        
+        public bool is_id_num_exist(int id_num, OleDbConnection conn)
+        {
+
+            string query = "Select * from students where id_num=?";
+
+            using (command = new OleDbCommand(query, conn))
+            {
+
+                command.Parameters.AddWithValue("?", id_num);
+
+                using (OleDbDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        int count = reader.GetInt32(0);
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
 
 
     }
