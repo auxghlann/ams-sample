@@ -109,17 +109,14 @@ namespace ams_sample
                 {
                     DialogResult dgRes = MessageBox.Show("Attendance Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    if (dgRes.Equals(DialogResult.OK))
-                    {
-                        conn.Close();
-                    }
-
                 }
                 else
                 {
                     MessageBox.Show("Failed to add to the Database", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
+
+                conn.Close();
             }
         }
 
@@ -133,14 +130,35 @@ namespace ams_sample
 
         }
 
-        public void clear_all_attendace(OleDbConnection conn)
+        public void clear_all_attendance(OleDbConnection conn)
         {
+            string query = "DELETE FROM attendances";
 
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
+            using (command = new OleDbCommand(query, conn))
+            {
+                int res = command.ExecuteNonQuery();
+                if (res != 0)
+                {
+                    DialogResult dgRes = MessageBox.Show("Attendance Cleared Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show("Failed to clear the Attendance", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                conn.Close();
+            }
         }
 
         // Helper function
         
-        public bool is_id_num_exist(int id_num, OleDbConnection conn)
+        private bool is_id_num_exist(int id_num, OleDbConnection conn)
         {
 
             string query = "Select * from students where id_num=?";
