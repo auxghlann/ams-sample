@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
+using System.Windows.Forms;
+using System.Data;
 
 namespace ams_sample
 {
@@ -13,6 +15,10 @@ namespace ams_sample
 
         const string conn_str = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\khest\\Documents\\C#\\app_dev\\ams-sample\\db\\db_attendance.mdb";
         private OleDbConnection connection;
+        private OleDbCommand command;
+        private OleDbDataAdapter adapter;
+
+        private DateTime date_now;
 
         public Database()
         {
@@ -27,47 +33,99 @@ namespace ams_sample
 
 
 
-
-
         // student query functions
         public void get_all_students(OleDbConnection conn)
         {
 
         }
 
-        public void add_student(OleDbConnection conn)
+        public void add_student(int id_number, string fname, string lname, string program, int year, OleDbConnection conn)
         {
             
         }
 
-        public void update_student(OleDbConnection conn)
+        public void update_student(int id_number, string fname, string lname, string program, int year, OleDbConnection conn)
         {
 
         }
 
-        public void remove_student(OleDbConnection conn)
+        public void remove_student(int id_number, OleDbConnection conn)
         {
 
         }
 
         // Attendance query functions
 
-        public void get_all_attendances(OleDbConnection conn)
+
+
+        public void get_all_attendances(OleDbConnection conn, DataTable dt, DataGridView grdData)
+        {
+
+            string query = "select * from attendances";
+
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
+            using (command = new OleDbCommand(query, conn))
+            {
+
+                using (adapter = new OleDbDataAdapter(command))
+                {
+                    adapter.Fill(dt);
+                    grdData.DataSource = dt;
+
+                }
+            }
+
+        }
+
+        public void add_attendance(int id_number, string time_status, OleDbConnection conn)
+        {
+            string query = "INSERT INTO attendances (id_num, time_status, time_attend) VALUES (?, ?, ?)";
+
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
+            using (command = new OleDbCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("?", id_number);
+                command.Parameters.AddWithValue("?", time_status);
+                command.Parameters.AddWithValue("?", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                int res = command.ExecuteNonQuery();
+                if (res != 0)
+                {
+                    DialogResult dgRes = MessageBox.Show("Attendance Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    if (dgRes.Equals(DialogResult.OK))
+                    {
+                        conn.Close();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Failed to add to the Database", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+        }
+
+        //public void update_attendance(OleDbConnection conn)
+        //{
+
+        //}
+
+        public void remove_attaendance(int idx, OleDbConnection conn)
         {
 
         }
 
-        public void add_attendance(OleDbConnection conn)
-        {
-
-        }
-
-        public void update_attendance(OleDbConnection conn)
-        {
-
-        }
-
-        public void remove_attaendance(OleDbConnection conn)
+        public void clear_all_attendace(OleDbConnection conn)
         {
 
         }
