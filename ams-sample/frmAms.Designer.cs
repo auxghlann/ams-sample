@@ -41,6 +41,9 @@
             this.item1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.item2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.item3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +72,7 @@
             this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnSave.Location = new System.Drawing.Point(550, 429);
+            this.btnSave.Location = new System.Drawing.Point(416, 429);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(86, 40);
             this.btnSave.TabIndex = 3;
@@ -83,7 +86,7 @@
             this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCancel.Location = new System.Drawing.Point(657, 429);
+            this.btnCancel.Location = new System.Drawing.Point(635, 430);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(86, 40);
             this.btnCancel.TabIndex = 5;
@@ -93,7 +96,7 @@
             // 
             // txtIDnumber
             // 
-            this.txtIDnumber.Location = new System.Drawing.Point(287, 448);
+            this.txtIDnumber.Location = new System.Drawing.Point(182, 449);
             this.txtIDnumber.Name = "txtIDnumber";
             this.txtIDnumber.Size = new System.Drawing.Size(123, 20);
             this.txtIDnumber.TabIndex = 0;
@@ -101,7 +104,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(287, 429);
+            this.label1.Location = new System.Drawing.Point(182, 430);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 0;
@@ -110,8 +113,9 @@
             // rdrTimeIn
             // 
             this.rdrTimeIn.AutoSize = true;
+            this.rdrTimeIn.Checked = true;
             this.rdrTimeIn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdrTimeIn.Location = new System.Drawing.Point(439, 429);
+            this.rdrTimeIn.Location = new System.Drawing.Point(334, 430);
             this.rdrTimeIn.Name = "rdrTimeIn";
             this.rdrTimeIn.Size = new System.Drawing.Size(59, 17);
             this.rdrTimeIn.TabIndex = 1;
@@ -123,11 +127,10 @@
             // 
             this.rdrTimeOut.AutoSize = true;
             this.rdrTimeOut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rdrTimeOut.Location = new System.Drawing.Point(439, 452);
+            this.rdrTimeOut.Location = new System.Drawing.Point(334, 453);
             this.rdrTimeOut.Name = "rdrTimeOut";
             this.rdrTimeOut.Size = new System.Drawing.Size(66, 17);
             this.rdrTimeOut.TabIndex = 2;
-            this.rdrTimeOut.TabStop = true;
             this.rdrTimeOut.Text = "Time out";
             this.rdrTimeOut.UseVisualStyleBackColor = true;
             // 
@@ -167,16 +170,19 @@
             // item1ToolStripMenuItem
             // 
             this.item1ToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.item1ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewToolStripMenuItem,
+            this.addToolStripMenuItem});
             this.item1ToolStripMenuItem.Name = "item1ToolStripMenuItem";
             this.item1ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.item1ToolStripMenuItem.Text = "Item 1";
+            this.item1ToolStripMenuItem.Text = "Students";
             // 
             // item2ToolStripMenuItem
             // 
             this.item2ToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.item2ToolStripMenuItem.Name = "item2ToolStripMenuItem";
             this.item2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.item2ToolStripMenuItem.Text = "Item 2";
+            this.item2ToolStripMenuItem.Text = "Clear Attendance";
             // 
             // item3ToolStripMenuItem
             // 
@@ -185,11 +191,34 @@
             this.item3ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.item3ToolStripMenuItem.Text = "Item 3";
             // 
+            // btnDel
+            // 
+            this.btnDel.Location = new System.Drawing.Point(526, 430);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(86, 39);
+            this.btnDel.TabIndex = 9;
+            this.btnDel.Text = "Delete";
+            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem.Text = "Add";
+            // 
             // frmAms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 505);
+            this.Controls.Add(this.btnDel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.rdrTimeOut);
             this.Controls.Add(this.rdrTimeIn);
@@ -230,6 +259,9 @@
         private System.Windows.Forms.ToolStripMenuItem item1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem item2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem item3ToolStripMenuItem;
+        private System.Windows.Forms.Button btnDel;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
     }
 }
 

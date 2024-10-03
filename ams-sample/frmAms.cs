@@ -56,7 +56,7 @@ namespace ams_sample
 
             if (string.IsNullOrEmpty(txtIDnumber.Text) || !(rdrTimeIn.Checked || rdrTimeOut.Checked))
             {
-                MessageBox.Show("Id Number and Time Status should not be empty", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Id Number and Time Status should not be empty", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -79,6 +79,25 @@ namespace ams_sample
             txtIDnumber.Clear();
             rdrTimeOut.Checked = false;
             rdrTimeIn.Checked = false;
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Do you want to clear the attendance?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (res == DialogResult.Yes)
+            {
+                DialogResult res2 = MessageBox.Show("Doing this action will delete all the attendance from the database. Do you want to proceed?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+
+                if (res2 == DialogResult.Yes)
+                {
+                    _db.clear_all_attendance(_db.Connection);
+                    fill_dataGrid();
+                }
+
+            }
+
         }
     }
 }
