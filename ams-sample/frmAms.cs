@@ -53,6 +53,13 @@ namespace ams_sample
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrEmpty(txtIDnumber.Text) || !(rdrTimeIn.Checked || rdrTimeOut.Checked))
+            {
+                MessageBox.Show("Id Number and Time Status should not be empty", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             int id_number = Convert.ToInt32(txtIDnumber.Text);
             string time_status = get_time_status();
 
@@ -67,9 +74,11 @@ namespace ams_sample
             fill_dataGrid();
         }
 
-
-       
-
-
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            txtIDnumber.Clear();
+            rdrTimeOut.Checked = false;
+            rdrTimeIn.Checked = false;
+        }
     }
 }
