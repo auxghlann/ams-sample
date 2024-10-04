@@ -112,7 +112,7 @@ namespace ams_sample
                 }
                 else
                 {
-                    MessageBox.Show("Failed to add to the Database", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to add to the attendance", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
 
@@ -125,9 +125,36 @@ namespace ams_sample
 
         //}
 
-        public void remove_attaendance(int idx, OleDbConnection conn)
+        public void remove_attendance(int id_number, OleDbConnection conn)
         {
+            string query = "DELETE from attendances where id_num=?";
 
+
+            if(conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
+            using (command = new OleDbCommand(query, conn))
+            {
+
+                command.Parameters.AddWithValue("?", id_number);
+
+                int res = command.ExecuteNonQuery();
+
+                if (res != 0)
+                {
+                    DialogResult dgRes = MessageBox.Show("Attendance Deleted Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete the attendance", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+                conn.Close();
+
+            }
         }
 
         public void clear_all_attendance(OleDbConnection conn)
