@@ -34,9 +34,21 @@ namespace ams_sample
 
 
         // student query functions
-        public void get_all_students(OleDbConnection conn)
+        public void get_all_students(OleDbConnection conn, DataTable dt, DataGridView grdData)
         {
+            string query = "Select id_num as ID_Number, fName as First_Name, lName as Last_Name, program as Program, year as Year from students";
 
+
+            using (command = new OleDbCommand(query, conn))
+            {
+
+                using (adapter = new OleDbDataAdapter(command))
+                {
+                    adapter.Fill(dt);
+                    grdData.DataSource = dt;
+                }
+
+            }
         }
 
         public void add_student(int id_number, string fname, string lname, string program, int year, OleDbConnection conn)
