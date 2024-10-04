@@ -39,11 +39,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.item1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.item2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.item3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnDel = new System.Windows.Forms.Button();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripClearAttendance = new System.Windows.Forms.ToolStripMenuItem();
+            this.item3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +63,7 @@
             this.grdData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdData.Size = new System.Drawing.Size(687, 305);
             this.grdData.TabIndex = 6;
+            this.grdData.SelectionChanged += new System.EventHandler(this.grdData_SelectionChanged);
             // 
             // btnSave
             // 
@@ -160,7 +161,7 @@
             this.toolStripMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.item1ToolStripMenuItem,
-            this.item2ToolStripMenuItem,
+            this.toolStripClearAttendance,
             this.item3ToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -177,12 +178,25 @@
             this.item1ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.item1ToolStripMenuItem.Text = "Students";
             // 
-            // item2ToolStripMenuItem
+            // viewToolStripMenuItem
             // 
-            this.item2ToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.item2ToolStripMenuItem.Name = "item2ToolStripMenuItem";
-            this.item2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.item2ToolStripMenuItem.Text = "Clear Attendance";
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem.Text = "Add";
+            // 
+            // toolStripClearAttendance
+            // 
+            this.toolStripClearAttendance.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripClearAttendance.Name = "toolStripClearAttendance";
+            this.toolStripClearAttendance.Size = new System.Drawing.Size(180, 22);
+            this.toolStripClearAttendance.Text = "Clear Attendance";
+            this.toolStripClearAttendance.Click += new System.EventHandler(this.toolStripClearAttendance_Click);
             // 
             // item3ToolStripMenuItem
             // 
@@ -200,18 +214,6 @@
             this.btnDel.Text = "Delete";
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
-            // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.viewToolStripMenuItem.Text = "View";
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addToolStripMenuItem.Text = "Add";
             // 
             // frmAms
             // 
@@ -257,7 +259,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem item1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem item2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripClearAttendance;
         private System.Windows.Forms.ToolStripMenuItem item3ToolStripMenuItem;
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;

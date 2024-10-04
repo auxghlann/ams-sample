@@ -24,6 +24,7 @@ namespace ams_sample
         private OleDbDataAdapter adapter;
         private DataTable dt;
 
+        private int selected_id_num = -1;
 
         // Helper Functions
 
@@ -72,6 +73,7 @@ namespace ams_sample
         private void frmAms_Load(object sender, EventArgs e)
         {
             fill_dataGrid();
+            btnDel.Enabled = false;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -82,6 +84,18 @@ namespace ams_sample
         }
 
         private void btnDel_Click(object sender, EventArgs e)
+        {
+
+            DialogResult dg = MessageBox.Show("Are you sure you want to delete the selected record?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dg == DialogResult.Yes)
+            {
+                _db.remove_attendance(selected_id_num, _db.Connection);
+            }
+
+        }
+
+        private void toolStripClearAttendance_Click(object sender, EventArgs e)
         {
             DialogResult res = MessageBox.Show("Do you want to clear the attendance?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -97,7 +111,25 @@ namespace ams_sample
                 }
 
             }
+        }
 
+        private void grdData_SelectionChanged(object sender, EventArgs e)
+        {
+
+            if (grdData.SelectedRows.Count > 0)
+            {
+
+                var selectedRow = grdData.SelectedRows[0].DataBoundItem as DataRowView;
+                
+                if (selectedRow != null)
+                {
+                    btnDel.Enabled = true;
+
+                    this.selected_id_num = Convert.ToInt32(selectedRow["ID_number"]);
+                }
+
+
+            }
         }
     }
 }
