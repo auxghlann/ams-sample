@@ -39,8 +39,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripManageStudent = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnDel = new System.Windows.Forms.Button();
             this.toolStripClearAttendance = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -168,9 +168,17 @@
             // 
             this.toolStripManageStudent.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripManageStudent.Name = "toolStripManageStudent";
-            this.toolStripManageStudent.Size = new System.Drawing.Size(180, 22);
+            this.toolStripManageStudent.Size = new System.Drawing.Size(165, 22);
             this.toolStripManageStudent.Text = "Manage Student";
             this.toolStripManageStudent.Click += new System.EventHandler(this.toolStripManageStudent_Click);
+            // 
+            // toolStripClearAttendance
+            // 
+            this.toolStripClearAttendance.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripClearAttendance.Name = "toolStripClearAttendance";
+            this.toolStripClearAttendance.Size = new System.Drawing.Size(165, 22);
+            this.toolStripClearAttendance.Text = "Clear Attendance";
+            this.toolStripClearAttendance.Click += new System.EventHandler(this.toolStripClearAttendance_Click);
             // 
             // btnDel
             // 
@@ -181,14 +189,6 @@
             this.btnDel.Text = "Delete";
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
-            // 
-            // toolStripClearAttendance
-            // 
-            this.toolStripClearAttendance.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripClearAttendance.Name = "toolStripClearAttendance";
-            this.toolStripClearAttendance.Size = new System.Drawing.Size(180, 22);
-            this.toolStripClearAttendance.Text = "Clear Attendance";
-            this.toolStripClearAttendance.Click += new System.EventHandler(this.toolStripClearAttendance_Click);
             // 
             // frmAmsMain
             // 
@@ -212,6 +212,7 @@
             this.Name = "frmAmsMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Attendance Monitoring";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAmsMain_FormClosing);
             this.Load += new System.EventHandler(this.frmAms_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).EndInit();
             this.menuStrip1.ResumeLayout(false);

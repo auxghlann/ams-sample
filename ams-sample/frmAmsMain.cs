@@ -146,5 +146,14 @@ namespace ams_sample
             
             
         }
+
+        private void frmAmsMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dg = MessageBox.Show("Are you sure you want to close the app?", "Confirmation", MessageBoxButtons.YesNo);
+            if (dg == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

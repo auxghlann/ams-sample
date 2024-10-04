@@ -166,6 +166,7 @@
             this.Name = "frmAmsStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Attendance Monitoring";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAmsStudent_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

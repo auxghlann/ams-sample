@@ -24,9 +24,25 @@ namespace ams_sample
 
         private void toolStripManageAttendance_Click(object sender, EventArgs e)
         {
-            this.frmMain.Show();
-            this.Close();
             
+            this.Close();
+            this.frmMain.Show();
+
+        }
+
+        private void frmAmsStudent_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dg = MessageBox.Show("Are you sure you want to close the manage student form?", "Confirmation", MessageBoxButtons.YesNo);
+            if (dg == DialogResult.No)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            this.frmMain.Show();
+
+            
+
         }
     }
 }
