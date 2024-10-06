@@ -36,7 +36,7 @@ namespace ams_sample
         // student query functions
         public void get_all_students(OleDbConnection conn, DataTable dt, DataGridView grdData)
         {
-            string query = "Select id_num as ID_Number, fName as First_Name, lName as Last_Name, program as Program, year as Year from students";
+            string query = "Select id_num as ID_Number, fName as First_Name, lName as Last_Name, program as Program, year_lvl as Year_Level from students";
 
 
             using (command = new OleDbCommand(query, conn))
@@ -53,7 +53,37 @@ namespace ams_sample
 
         public void add_student(int id_number, string fname, string lname, string program, int year, OleDbConnection conn)
         {
-            
+
+            string query = "INSERT INTO students VALUES (?, ?, ?, ?, ?)";
+
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
+            using (command = new OleDbCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("?", id_number);
+                command.Parameters.AddWithValue("?", fname);
+                command.Parameters.AddWithValue("?", lname);
+                command.Parameters.AddWithValue("?", program);
+                command.Parameters.AddWithValue("?", year);
+
+
+                int res = command.ExecuteNonQuery();
+                if (res != 0)
+                {
+                    DialogResult dgRes = MessageBox.Show("Student Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show("Failed to add to the student record", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+
+                conn.Close();
+            }
         }
 
         public void update_student(int id_number, string fname, string lname, string program, int year, OleDbConnection conn)
