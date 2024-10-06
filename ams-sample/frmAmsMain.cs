@@ -33,10 +33,12 @@ namespace ams_sample
 
         // Helper Functions
 
-        private void fill_dataGrid()
+        private void fill_attendance_dataGrid()
         {
             _db.get_all_attendances(_db.Connection, dt = new DataTable(), grdData);
         }
+
+
 
         private string get_time_status()
         {
@@ -71,13 +73,13 @@ namespace ams_sample
 
             _db.add_attendance(id_number, time_status, _db.Connection);
 
-            fill_dataGrid();
+            fill_attendance_dataGrid();
 
         }
 
         private void frmAms_Load(object sender, EventArgs e)
         {
-            fill_dataGrid();
+            fill_attendance_dataGrid();
             btnDel.Enabled = false;
         }
 
@@ -112,7 +114,7 @@ namespace ams_sample
                 if (res2 == DialogResult.Yes)
                 {
                     _db.clear_all_attendance(_db.Connection);
-                    fill_dataGrid();
+                    fill_attendance_dataGrid();
                 }
 
             }
@@ -139,7 +141,7 @@ namespace ams_sample
 
         private void toolStripManageStudent_Click(object sender, EventArgs e)
         {
-            frmStudent = new frmAmsStudent(this);
+            frmStudent = new frmAmsStudent(this, this._db);
             frmStudent.Show();
             this.Hide();
             

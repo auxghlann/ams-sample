@@ -14,13 +14,27 @@ namespace ams_sample
     {
 
         private frmAmsMain frmMain;
-        public frmAmsStudent(frmAmsMain mainForm)
+        private Database _db;
+        private DataTable dt;
+
+        public frmAmsStudent(frmAmsMain mainForm, Database db)
         {
             InitializeComponent();
             this.frmMain = mainForm;
+            this._db = db;
         }
 
-        
+
+
+        // Helper Functions
+
+        private void fill_student_dataGrid()
+        {
+            _db.get_all_students(_db.Connection, dt = new DataTable(), grdData);
+        }
+
+
+        // WinForm Functions
 
         private void toolStripManageAttendance_Click(object sender, EventArgs e)
         {
@@ -29,6 +43,8 @@ namespace ams_sample
             this.frmMain.Show();
 
         }
+
+ 
 
         private void frmAmsStudent_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -41,8 +57,18 @@ namespace ams_sample
 
             this.frmMain.Show();
 
-            
+        }
 
+        private void frmAmsStudent_Load(object sender, EventArgs e)
+        {
+            fill_student_dataGrid();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            crud_frm_for_students.frmAddStudent frmAddStudent = new crud_frm_for_students.frmAddStudent(_db);
+            frmAddStudent.ShowDialog();
+            fill_student_dataGrid();
         }
     }
 }

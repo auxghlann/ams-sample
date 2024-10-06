@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="crud_frm_for_students\frmAddStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="crud_frm_for_students\frmAddStudent.Designer.cs">
+      <DependentUpon>frmAddStudent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="frmAmsMain.cs">
       <SubType>Form</SubType>
@@ -62,6 +68,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="crud_frm_for_students\frmAddStudent.resx">
+      <DependentUpon>frmAddStudent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAmsMain.resx">
       <DependentUpon>frmAmsMain.cs</DependentUpon>
     </EmbeddedResource>
