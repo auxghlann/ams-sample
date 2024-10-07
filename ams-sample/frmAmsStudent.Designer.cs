@@ -87,6 +87,7 @@
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // grdData
             // 
@@ -103,6 +104,7 @@
             this.grdData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdData.Size = new System.Drawing.Size(687, 305);
             this.grdData.TabIndex = 15;
+            this.grdData.SelectionChanged += new System.EventHandler(this.grdData_SelectionChanged);
             // 
             // menuStrip1
             // 
