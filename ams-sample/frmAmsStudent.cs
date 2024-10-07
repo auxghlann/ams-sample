@@ -97,11 +97,6 @@ namespace ams_sample
             }
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void frmAmsStudent_Load(object sender, EventArgs e)
         {
             fill_student_dataGrid();
