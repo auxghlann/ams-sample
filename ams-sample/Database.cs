@@ -88,6 +88,37 @@ namespace ams_sample
 
         public void update_student(int id_number, string fname, string lname, string program, int year, OleDbConnection conn)
         {
+            string query = "UPDATE students SET fName=?, lName=?, program=?, year_lvl=? WHERE id_num=?";
+
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
+            using (command = new OleDbCommand(query, conn))
+            {
+
+                command.Parameters.AddWithValue("?", fname);
+                command.Parameters.AddWithValue("?", lname);
+                command.Parameters.AddWithValue("?", program);
+                command.Parameters.AddWithValue("?", year);
+                command.Parameters.AddWithValue("?", id_number);
+
+                int res = command.ExecuteNonQuery();
+                if (res != 0)
+                {
+                    DialogResult dgRes = MessageBox.Show("Student Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update the record of the student", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+
+                conn.Close();
+
+            }
 
         }
 
