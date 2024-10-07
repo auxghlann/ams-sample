@@ -30,7 +30,7 @@
         {
             this.btnDel = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.grdData = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -60,18 +60,19 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Attendance Monitoring System - (Students)";
             // 
-            // btnCancel
+            // btnExit
             // 
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCancel.Location = new System.Drawing.Point(657, 427);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(86, 40);
-            this.btnCancel.TabIndex = 3;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnExit.Location = new System.Drawing.Point(657, 427);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(86, 40);
+            this.btnExit.TabIndex = 3;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnUpdate
             // 
@@ -87,6 +88,7 @@
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // grdData
             // 
@@ -103,6 +105,7 @@
             this.grdData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdData.Size = new System.Drawing.Size(687, 305);
             this.grdData.TabIndex = 15;
+            this.grdData.SelectionChanged += new System.EventHandler(this.grdData_SelectionChanged);
             // 
             // menuStrip1
             // 
@@ -156,7 +159,7 @@
             this.ClientSize = new System.Drawing.Size(794, 505);
             this.Controls.Add(this.btnDel);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.grdData);
@@ -181,7 +184,7 @@
 
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.DataGridView grdData;
         private System.Windows.Forms.MenuStrip menuStrip1;
