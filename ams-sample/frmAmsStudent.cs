@@ -97,6 +97,22 @@ namespace ams_sample
             }
         }
 
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            DialogResult dgRes = MessageBox.Show($"Do you want to delete student {selected_id_num}", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dgRes == DialogResult.Yes)
+            {
+                _db.remove_student(selected_id_num, _db.Connection);
+                fill_student_dataGrid();
+            }
+        }
+
         private void frmAmsStudent_Load(object sender, EventArgs e)
         {
             fill_student_dataGrid();

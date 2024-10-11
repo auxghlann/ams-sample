@@ -18,7 +18,7 @@ namespace ams_sample
         private OleDbCommand command;
         private OleDbDataAdapter adapter;
 
-        private DateTime date_now;
+        //private DateTime date_now;
 
         public Database()
         {
@@ -73,7 +73,7 @@ namespace ams_sample
                 int res = command.ExecuteNonQuery();
                 if (res != 0)
                 {
-                    DialogResult dgRes = MessageBox.Show("Student Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Student Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 else
@@ -107,7 +107,7 @@ namespace ams_sample
                 int res = command.ExecuteNonQuery();
                 if (res != 0)
                 {
-                    DialogResult dgRes = MessageBox.Show("Student Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Student Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 else
@@ -125,6 +125,31 @@ namespace ams_sample
         public void remove_student(int id_number, OleDbConnection conn)
         {
 
+            string query = "DELETE from students where id_num = ?";
+
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            } 
+
+            using (command = new OleDbCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("?", id_number);
+
+                int res = command.ExecuteNonQuery();
+                if (res != 0)
+                {
+                    MessageBox.Show("Student Has Been Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete the record of the student", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+
+                conn.Close();
+            }
         }
 
         // Attendance query functions
@@ -180,7 +205,7 @@ namespace ams_sample
                 int res = command.ExecuteNonQuery();
                 if (res != 0)
                 {
-                    DialogResult dgRes = MessageBox.Show("Attendance Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Attendance Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 else
@@ -217,7 +242,7 @@ namespace ams_sample
 
                 if (res != 0)
                 {
-                    DialogResult dgRes = MessageBox.Show("Attendance Deleted Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Attendance Deleted Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 else
@@ -244,7 +269,7 @@ namespace ams_sample
                 int res = command.ExecuteNonQuery();
                 if (res != 0)
                 {
-                    DialogResult dgRes = MessageBox.Show("Attendance Cleared Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Attendance Cleared Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 else
