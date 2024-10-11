@@ -68,9 +68,19 @@ namespace ams_sample.crud_frm_for_students
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            _db.update_student(Convert.ToInt32(txtIdNum.Text), txtFName.Text, txtLName.Text, 
-                        cboProgram.Text, Convert.ToInt16(cboYear.Text), this._db.Connection);
+
+            if (string.IsNullOrEmpty(txtIdNum.Text) || string.IsNullOrEmpty(txtFName.Text) || string.IsNullOrEmpty(txtLName.Text)
+                || string.IsNullOrEmpty(cboProgram.Text) || string.IsNullOrEmpty(cboYear.Text))
+            {
+                MessageBox.Show("Input fields should not be emptpy", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            _db.update_student(Convert.ToInt32(txtIdNum.Text), txtFName.Text, txtLName.Text,
+            cboProgram.Text, Convert.ToInt16(cboYear.Text), this._db.Connection);
             this.Close();
+
+
 
         }
 
