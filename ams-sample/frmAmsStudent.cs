@@ -41,7 +41,7 @@ namespace ams_sample
 
         private void fill_student_dataGrid()
         {
-            _db.get_all_students(_db.Connection, dt = new DataTable(), grdData);
+            _db.get_all_students(_db.Connection, this.dt = new DataTable(), grdData);
         }
 
 
@@ -111,6 +111,12 @@ namespace ams_sample
                 _db.remove_student(selected_id_num, _db.Connection);
                 fill_student_dataGrid();
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            _db.search_stud_by_keyword(txtSearch.Text, this.dt = new DataTable(), grdData);
+          
         }
 
         private void frmAmsStudent_Load(object sender, EventArgs e)

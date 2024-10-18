@@ -34,6 +34,34 @@ namespace ams_sample
 
 
         // student query functions
+
+        public void search_stud_by_keyword(string keyword, DataTable dt, DataGridView grdData)
+        {
+            string query = "Select id_num as ID_Number, fName as First_Name, lName as Last_Name, program as Program, year_lvl as Year_Level from students " +
+                "WHERE fName like ? or lName like ?";
+
+            if (this.Connection.State != ConnectionState.Open)
+            {
+                this.Connection.Open();
+            }
+
+            using (command = new OleDbCommand(query, this.Connection))
+            {
+                command.Parameters.AddWithValue("?", keyword + "%");
+                command.Parameters.AddWithValue("?", keyword + "%");
+
+                using (adapter = new OleDbDataAdapter(command))
+                {
+                    //DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    grdData.DataSource = dt;
+                }
+
+                this.Connection.Close();
+            }
+        } 
+
+
         public void get_all_students(OleDbConnection conn, DataTable dt, DataGridView grdData)
         {
             string query = "Select id_num as ID_Number, fName as First_Name, lName as Last_Name, program as Program, year_lvl as Year_Level from students";
